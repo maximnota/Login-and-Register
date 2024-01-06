@@ -24,7 +24,7 @@ This application is a simple user registration and sign-in system built using En
 
 To run this application, ensure you have the following installed:
 
-- Python 3.x
+- Python 3
 - PyQt library
 
 ---
