@@ -10,23 +10,59 @@ words = []
 def register():
     win.HideAll()
     userExists = False
+    badSymbolExists = False
+    maxCharLimit = False
+
+    for character in win.getTextFieldValue(UsernameTextField):
+        if character == ',':
+            badSymbolExists = True
+            break
+        if character == ' ':
+            badSymbolExists = True
+            break
+
+    for character in win.getTextFieldValue(PasswordTextField):
+        if character == ',':
+            badSymbolExists = True
+            break
+        if character == ' ':
+            badSymbolExists = True
+            break
+
+    if len(win.getTextFieldValue(UsernameTextField)) >= 10:
+        maxCharLimit = True
+    if len(win.getTextFieldValue(PasswordTextField)) >= 10:
+        maxCharLimit = True
+
     i = 0
     with open(users, "r", encoding="UTF-8") as file:
         for item in file:
             item = item.strip()
             item = item.split(',')
-            if item[0] == win.getTextFieldValue(UsernameTextField) and userExists == False:
+            if item[0] == win.getTextFieldValue(UsernameTextField) and userExists == False and badSymbolExists == False and maxCharLimit == False:
                 win.addText("User Exists", 25, "Center-top")
                 win.addButton("Retry", registerWindow)
                 win.addButton("Return to main window", defaultWindow)
                 userExists = True
 
-        if userExists == False:
+        if userExists == False and badSymbolExists == False and maxCharLimit == False:
             with open(users, "a", encoding="UTF-8") as file:
                 file.write("\n" + win.getTextFieldValue(UsernameTextField) + "," + win.getTextFieldValue(PasswordTextField))
             a = "Registered: " + win.getTextFieldValue(UsernameTextField) + "\n Password: " + win.getTextFieldValue(PasswordTextField)
             Text = win.addText(a, 25, "Center")
             button = win.addButton("Return to main window", defaultWindow)
+
+        if badSymbolExists == True:
+            win.HideAll()
+            win.addText("Some symbols you inputted aren't supported or you have not entered anything into one of the options", 25, "Center-top")
+            win.addButton("Retry", registerWindow)
+            win.addButton("Return to main window", defaultWindow)
+
+        if maxCharLimit == True:
+            win.HideAll()
+            win.addText("You have reached the maximum character limit", 25, "Center-top")
+            win.addButton("Retry", registerWindow)
+            win.addButton("Return to main window", defaultWindow)
 
 def registerWindow():
     win.changeWindowTitle("Register")
