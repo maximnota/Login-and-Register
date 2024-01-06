@@ -1,6 +1,6 @@
-# PyQt User Registration and Sign-In App
+# Enhanced-PyQt User Registration and Sign-In App
 
-This application is a simple user registration and sign-in system built using PyQt, allowing users to register and sign in using a graphical user interface.
+This application is a simple user registration and sign-in system built using Enhanced-PyQt, allowing users to register and sign in using a graphical user interface.
 
 ---
 
