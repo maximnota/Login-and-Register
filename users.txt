@@ -1,9 +1,1 @@
 
-Maxim,MyPassword123
-daniel,gannota
-Maxi,Gg
-troll,1234567890
-dg,
-
-maxim,hello
-maxim.,hi
